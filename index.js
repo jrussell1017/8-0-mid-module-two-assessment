@@ -32,15 +32,15 @@ const exampleMovies = require("./movies");
  */
 function getAllMovieTitles(movies) {
   // throw error to handle if no movie was input
-  if(!movies.length) {
-    throw "Error, no movie provided!"
+  if (!movies.length) {
+    throw "Error, no movie provided!";
   }
   // use .map to return each element title
   let titles = movies.map((element) => {
-    return element.title
-  })
+    return element.title;
+  });
   // return all of your titles
-  return titles
+  return titles;
 }
 
 /**
@@ -63,17 +63,17 @@ function getAllMovieTitles(movies) {
  */
 function checkIfAnyMovieHasRating(movies, rating) {
   // throw error to handle if no movie was input
-  if(!movies.length) {
-    throw "Error!"
+  if (!movies.length) {
+    throw "Error!";
   }
   // set your default rating if no rating is provided
-  if(!rating) {
-     rating = "G"
+  if (!rating) {
+    rating = "G";
   }
   // use .some to return boolean asking if the movie rating is === to rating provied or default rating
-   return movies.some((element) => {
-   return element.rated === rating
-  })
+  return movies.some((element) => {
+    return element.rated === rating;
+  });
 }
 
 /**
@@ -94,23 +94,23 @@ function checkIfAnyMovieHasRating(movies, rating) {
  */
 function findById(movies, id) {
   // throw error to handle if no movie was provided
-  if(!movies.length) {
-    throw "Error!"
+  if (!movies.length) {
+    throw "Error!";
   }
   // create variable that will store and provied answer to be returned
   let result = movies.find((element) => {
-    // if element id (IMBD) is === to IMBD id given return that title 
-    if(element.imdbID === id) {
-      // return title 
-      return element
-     } 
-  })
+    // if element id (IMBD) is === to IMBD id given return that title
+    if (element.imdbID === id) {
+      // return title
+      return element;
+    }
+  });
   // if no element matches id given return null
-  if(!result) {
-    return null
+  if (!result) {
+    return null;
   }
   // return answer
-  return result
+  return result;
 }
 
 /**
@@ -137,14 +137,14 @@ function findById(movies, id) {
  */
 function filterByGenre(movies, genre) {
   // throw error to handle if no movie was given
-  if(!movies.length) {
-    throw "Error, no movie was inputted!"
+  if (!movies.length) {
+    throw "Error, no movie was inputted!";
   }
-// use .filter to return movie that matches the given genre
-   return movies.filter((element) => {
-     //use .toLowerCase to handle case sensitivitivy and chain with .includes to find matching movies
-    return element.genre.toLowerCase().includes(genre.toLowerCase())
-  })
+  // use .filter to return movie that matches the given genre
+  return movies.filter((element) => {
+    //use .toLowerCase to handle case sensitivitivy and chain with .includes to find matching movies
+    return element.genre.toLowerCase().includes(genre.toLowerCase());
+  });
 }
 
 /**
@@ -173,16 +173,16 @@ function filterByGenre(movies, genre) {
  */
 function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
   // throw error to handle if no movies were given
-  if(!movies.length) {
-    throw "Error, no movie was inputted."
+  if (!movies.length) {
+    throw "Error, no movie was inputted.";
   }
-// use .filter to filter if movies in which the released year is <= year given
+  // use .filter to filter if movies in which the released year is <= year given
   return movies.filter((element) => {
-    // create variable to store the year that will be compared 
+    // create variable to store the year that will be compared
     // use .split(" ").slice(2) on released in order to grab the year which is in a str
-    let modifiedYear = element.released.split(" ").slice(2)
-    return modifiedYear <= year
-  })
+    let modifiedYear = Number(element.released.split(" ").slice(2));
+    return modifiedYear <= year;
+  });
 }
 
 /**
@@ -210,19 +210,19 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
     ];
  */
 function getRottenTomatoesScoreByMovie(movies) {
-// throw error to handle if no movie was input.
-if(!movies.length) {
-  throw "Error, no movie was input."
-}
-// use .map to return each created element
+  // throw error to handle if no movie was input.
+  if (!movies.length) {
+    throw "Error, no movie was input.";
+  }
+  // use .map to return each created element
   return movies.map((element) => {
-// use .find to retrieve rotten tomato rating 
-   let rottenRating = element.ratings.find((rating) => {
-    return rating.source === "Rotten Tomatoes"
-  })
-  // create shape of object they asked to be returned
-  return { [element.title]: rottenRating.value }
-  })
+    // use .find to retrieve rotten tomato rating
+    let rottenRating = element.ratings.find((rating) => {
+      return rating.source === "Rotten Tomatoes";
+    });
+    // create shape of object they asked to be returned
+    return { [element.title]: rottenRating.value };
+  });
 }
 
 // Do not change anything below this line.

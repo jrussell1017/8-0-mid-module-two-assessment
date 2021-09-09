@@ -30,7 +30,18 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+function getAllMovieTitles(movies) {
+  // throw error to handle if no movie was input
+  if(!movies.length) {
+    throw "Error, no movie provided!"
+  }
+  // use .map to return each element title
+  let titles = movies.map((element) => {
+    return element.title
+  })
+  // return all of your titles
+  return titles
+}
 
 /**
  * checkIfAnyMovieHasRating()
@@ -50,7 +61,20 @@ function getAllMovieTitles() {}
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies, rating) {
+  // throw error to handle if no movie was input
+  if(!movies.length) {
+    throw "Error!"
+  }
+  // set your default rating if no rating is provided
+  if(!rating) {
+     rating = "G"
+  }
+  // use .some to return boolean asking if the movie rating is === to rating provied or default rating
+   return movies.some((element) => {
+   return element.rated === rating
+  })
+}
 
 /**
  * findById()
@@ -68,7 +92,26 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+  // throw error to handle if no movie was provided
+  if(!movies.length) {
+    throw "Error!"
+  }
+  // create variable that will store and provied answer to be returned
+  let result = movies.find((element) => {
+    // if element id (IMBD) is === to IMBD id given return that title 
+    if(element.imdbID === id) {
+      // return title 
+      return element
+     } 
+  })
+  // if no element matches id given return null
+  if(!result) {
+    return null
+  }
+  // return answer
+  return result
+}
 
 /**
  * filterByGenre()
@@ -92,7 +135,17 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+  // throw error to handle if no movie was given
+  if(!movies.length) {
+    throw "Error, no movie was inputted!"
+  }
+// use .filter to return movie that matches the given genre
+   return movies.filter((element) => {
+     //use .toLowerCase to handle case sensitivitivy and chain with .includes to find matching movies
+    return element.genre.toLowerCase().includes(genre.toLowerCase())
+  })
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -118,7 +171,19 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  // throw error to handle if no movies were given
+  if(!movies.length) {
+    throw "Error, no movie was inputted."
+  }
+// use .filter to filter if movies in which the released year is <= year given
+  return movies.filter((element) => {
+    // create variable to store the year that will be compared 
+    // use .split().slice() in order to grab the year which is in str
+    let modifiedYear = element.released.split(" ").slice(2)
+    return modifiedYear <= year
+  })
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -144,7 +209,9 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+
+}
 
 // Do not change anything below this line.
 module.exports = {

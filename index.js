@@ -179,7 +179,7 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
 // use .filter to filter if movies in which the released year is <= year given
   return movies.filter((element) => {
     // create variable to store the year that will be compared 
-    // use .split().slice() in order to grab the year which is in str
+    // use .split(" ").slice(2) on released in order to grab the year which is in a str
     let modifiedYear = element.released.split(" ").slice(2)
     return modifiedYear <= year
   })
@@ -210,7 +210,19 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
     ];
  */
 function getRottenTomatoesScoreByMovie(movies) {
-
+// throw error to handle if no movie was input.
+if(!movies.length) {
+  throw "Error, no movie was input."
+}
+// use .map to return each created element
+  return movies.map((element) => {
+// use .find to retrieve rotten tomato rating 
+   let rottenRating = element.ratings.find((rating) => {
+    return rating.source === "Rotten Tomatoes"
+  })
+  // create shape of object they asked to be returned
+  return { [element.title]: rottenRating.value }
+  })
 }
 
 // Do not change anything below this line.
